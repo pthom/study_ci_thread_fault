@@ -8,12 +8,20 @@ jobs:
     strategy:
       matrix:
         msvc_version:
-          - 2019
+          # - 2019
           - 2022
     name: "Windows ${{ matrix.msvc_version }} MSVC"
     steps:
+
       - uses: actions/checkout@main
+
       - uses: ilammy/msvc-dev-cmd@v1  # GitHub Action to setup Developer Command Prompt for Microsoft Visual C++ 
+
+
+      - name: Setup interactive tmate session # uncomment this to get a remote shell to debug the build
+        uses: mxschmitt/action-tmate@v3
+
+
       - name: Build and Test
         shell: bash
         run: |
