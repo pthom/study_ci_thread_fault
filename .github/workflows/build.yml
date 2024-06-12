@@ -8,8 +8,9 @@ jobs:
     strategy:
       matrix:
         msvc_version:
-          # - 2019
+          - 2019
           - 2022
+          - latest
     name: "Windows ${{ matrix.msvc_version }} MSVC"
     steps:
 
@@ -30,4 +31,3 @@ jobs:
           cmake  ..
           cmake --build . --config Release
           ./Release/main.exe
-

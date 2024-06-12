@@ -1,9 +1,9 @@
-Repository to study a CI issue. See https://github.com/Dobiasd/FunctionalPlus/issues/304
+Study issue / GitHub Runners / Visual Studio 2022 / std::async
 ======================================================================
 
-There is a serious issue in GitHub's runner CI.
+This repository is here to study an issue which was discovered at https://github.com/Dobiasd/FunctionalPlus/issues/304
 
-This code:
+There is a serious issue in GitHub's runner CI. This code:
 
 ```cpp
 #include <future>
@@ -17,5 +17,6 @@ int main()
 }
 ```
 
-when compiled and built in release mode for Visual Studio 2019, will crash when run in a GitHub runner, with a segmentation fault.
+when compiled and built in release mode for Visual Studio 2022, will **crash** when run in a GitHub runner (windows 2022), with a segmentation fault!
 
+See for example: https://github.com/pthom/study_ci_thread_fault/actions/runs/9481193046/job/26123434184
