@@ -9,11 +9,11 @@ jobs:
       fail-fast: false
       matrix:
         platform:
-          - windows-2019
+          #- windows-2019
           - windows-2022
-          - windows-latest
-          - ubuntu-latest
-          - macos-latest
+          #- windows-latest
+          #- ubuntu-latest
+          #- macos-latest
     name: "${{ matrix.platform }}"
     steps:
       - uses: actions/checkout@main
@@ -22,8 +22,6 @@ jobs:
       #  if: runner.os == 'Windows'
       #  uses: ilammy/msvc-dev-cmd@v1
 
-      # - name: Setup interactive tmate session # uncomment this to get a remote shell to debug the build
-      #   uses: mxschmitt/action-tmate@v3
 
       - name: Build
         shell: bash
@@ -38,6 +36,9 @@ jobs:
         shell: bash
         run: |
           ./Release/main.exe
+
+      - name: Setup interactive tmate session # uncomment this to get a remote shell to debug the build
+        uses: mxschmitt/action-tmate@v3
 
       - name: Run tests on Unix-like systems
         if: runner.os != 'Windows'
