@@ -44,3 +44,7 @@ https://github.com/actions/runner-images/issues/10004#issuecomment-2156109231
 
 https://github.com/actions/runner/issues/3331
 
+Solution
+========
+
+This issue was fixed by GitHub on 2024-06-12
