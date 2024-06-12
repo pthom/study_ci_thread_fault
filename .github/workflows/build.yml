@@ -1,33 +1,46 @@
 name: ci
 
-on: [ workflow_dispatch, push, pull_request ]
+on: [workflow_dispatch, push, pull_request]
 
 jobs:
-  build_windows_msvc:
-    runs-on: windows-${{ matrix.msvc_version }}
+  build:
+    runs-on: ${{ matrix.platform }}
     strategy:
+      fail-fast: false
       matrix:
-        msvc_version:
-          - 2019
-          - 2022
-          - latest
-    name: "Windows ${{ matrix.msvc_version }} MSVC"
+        platform:
+          - windows-2019
+          - windows-2022
+          - windows-latest
+          - ubuntu-latest
+          - macos-latest
+    name: "${{ matrix.platform }}"
     steps:
-
       - uses: actions/checkout@main
 
-      - uses: ilammy/msvc-dev-cmd@v1  # GitHub Action to setup Developer Command Prompt for Microsoft Visual C++ 
-
+      #- name: Set up MSVC for Windows
+      #  if: runner.os == 'Windows'
+      #  uses: ilammy/msvc-dev-cmd@v1
 
       # - name: Setup interactive tmate session # uncomment this to get a remote shell to debug the build
-      #  uses: mxschmitt/action-tmate@v3
+      #   uses: mxschmitt/action-tmate@v3
 
-
-      - name: Build and Test
+      - name: Build
         shell: bash
         run: |
           mkdir build
           cd build
-          cmake  ..
+          cmake ..
           cmake --build . --config Release
+
+      - name: Run tests on Windows
+        if: runner.os == 'Windows'
+        shell: bash
+        run: |
           ./Release/main.exe
+
+      - name: Run tests on Unix-like systems
+        if: runner.os != 'Windows'
+        shell: bash
+        run: |
+          ./build/main
