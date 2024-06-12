@@ -19,4 +19,5 @@ int main()
 
 when compiled and built in release mode for Visual Studio 2022, will **crash** when run in a GitHub runner (windows 2022), with a segmentation fault!
 
-See for example: https://github.com/pthom/study_ci_thread_fault/actions/runs/9481193046/job/26123434184
+See for example: https://github.com/pthom/study_ci_thread_fault/actions/runs/9481503691/job/26124415183
+
