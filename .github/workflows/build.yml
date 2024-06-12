@@ -18,8 +18,8 @@ jobs:
       - uses: ilammy/msvc-dev-cmd@v1  # GitHub Action to setup Developer Command Prompt for Microsoft Visual C++ 
 
 
-      - name: Setup interactive tmate session # uncomment this to get a remote shell to debug the build
-        uses: mxschmitt/action-tmate@v3
+      # - name: Setup interactive tmate session # uncomment this to get a remote shell to debug the build
+      #  uses: mxschmitt/action-tmate@v3
 
 
       - name: Build and Test
@@ -29,4 +29,5 @@ jobs:
           cd build
           cmake  ..
           cmake --build . --config Release
-          ./main
+          ./Release/main.exe
+
